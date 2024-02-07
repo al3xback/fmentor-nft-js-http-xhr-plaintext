@@ -1,7 +1,7 @@
 {
 	"name": "fmentor-nft-js-http-xhr-plaintext",
 	"version": "1.0.0",
-	"description": "nft preview card component using display flex",
+	"description": "nft preview card component using js http xhr and plaintext",
 	"main": "index.js",
 	"scripts": {
 		"sass-dev": "sass --watch scss/main.scss css/main.css",
