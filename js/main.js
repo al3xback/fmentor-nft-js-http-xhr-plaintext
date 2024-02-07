@@ -4,7 +4,7 @@ const mainContainerEl = document.querySelector('main .container');
 const cardTemplate = document.getElementById('card-template');
 
 const URL =
-	'https://gist.githubusercontent.com/al3xback/df380906f13f1a0ab49a3a7a56b0480b/raw/e6e8255bc605a89c6b4e1bc59f8d2002c6a389a8/gistfile1.txt';
+	'https://gist.githubusercontent.com/al3xback/df380906f13f1a0ab49a3a7a56b0480b/raw/d2883a36782a6e417946989426ff0a0981766005/data.txt';
 
 const renderCardContent = (data) => {
 	const [title, desc, image, ethereumAmount, remainingTime, ...author] =
