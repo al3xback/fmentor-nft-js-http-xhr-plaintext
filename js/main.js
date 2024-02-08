@@ -7,10 +7,11 @@ const URL =
 	'https://gist.githubusercontent.com/al3xback/df380906f13f1a0ab49a3a7a56b0480b/raw/f4f4e2c2baab04ed6d79ffc59555ffae6eae2958/nft-data.txt';
 
 const renderCardContent = (data) => {
-	const [title, desc, image, ethereumAmount, remainingTime, ...author] =
+	const [title, description, image, ethereumAmount, remainingTime, ...author] =
 		data.split('\n');
 
-	const cardEl = document.importNode(cardTemplate.content, true);
+	const cardTemplateNode = document.importNode(cardTemplate.content, true);
+	const cardEl = cardTemplateNode.querySelector('.card');
 
 	const cardImageEl = cardEl.querySelector('.card__image img');
 	cardImageEl.src = './images/' + image;
@@ -20,7 +21,7 @@ const renderCardContent = (data) => {
 	cardTitleEl.textContent = title;
 
 	const cardDescEl = cardEl.querySelector('.card__desc');
-	cardDescEl.textContent = desc;
+	cardDescEl.textContent = description;
 
 	const cardStatusItemEls = cardEl.querySelectorAll('.card__stats-list-item');
 	const cardEthereumAmountEl = cardStatusItemEls[0];
