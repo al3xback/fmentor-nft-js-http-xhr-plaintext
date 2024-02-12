@@ -15,7 +15,9 @@ const handleError = (msg) => {
 	removeLoading();
 
 	const errorEl = document.createElement('p');
+	errorEl.className = 'error';
 	errorEl.textContent = msg;
+
 	cardWrapperEl.appendChild(errorEl);
 };
 
@@ -58,7 +60,7 @@ const renderCardContent = (data) => {
 	cardAuthorNameEl.textContent = author[0];
 
 	removeLoading();
-	cardWrapperEl.appendChild(cardEl);
+	cardWrapperEl.appendChild(cardTemplateNode);
 };
 
 sendHttpRequest('GET', URL, renderCardContent, handleError);
