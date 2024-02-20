@@ -1,7 +1,7 @@
 import { sendHttpRequest } from './util.js';
 
 const URL =
-	'https://gist.githubusercontent.com/al3xback/df380906f13f1a0ab49a3a7a56b0480b/raw/4d39982324184fd6dfbc8f176f062137d559d624/nft-data.txt';
+	'https://gist.githubusercontent.com/al3xback/df380906f13f1a0ab49a3a7a56b0480b/raw/945b25b08e0c1994287b816d6bf367e04007bfd6/nft-data.txt';
 
 const cardWrapperEl = document.querySelector('.card-wrapper');
 const cardTemplate = document.getElementById('card-template');
@@ -22,14 +22,10 @@ const handleError = (msg) => {
 };
 
 const renderCardContent = (data) => {
-	const [
-		title,
-		description,
-		image,
-		ethereumAmount,
-		remainingTime,
-		...author
-	] = data.split('\n');
+	const [title, description, image, statusInfo, authorInfo] =
+		data.split('\n');
+	const [ethereumAmount, remainingTime] = statusInfo.split(' | ');
+	const [authorName, authorImage] = authorInfo.split(' | ');
 
 	const cardTemplateNode = document.importNode(cardTemplate.content, true);
 	const cardEl = cardTemplateNode.querySelector('.card');
@@ -46,18 +42,16 @@ const renderCardContent = (data) => {
 
 	const cardStatusItemEls = cardEl.querySelectorAll('.card__stats-list-item');
 	const cardEthereumAmountEl = cardStatusItemEls[0];
-	cardEthereumAmountEl.querySelector('span').textContent =
-		ethereumAmount + ' ETH';
+	cardEthereumAmountEl.querySelector('span').textContent = ethereumAmount;
 	const cardRemainingTimeEl = cardStatusItemEls[1];
-	cardRemainingTimeEl.querySelector('span').textContent =
-		remainingTime + ' days left';
+	cardRemainingTimeEl.querySelector('span').textContent = remainingTime;
 
 	const cardAuthorImageEl = cardEl.querySelector('.card__author-img');
-	cardAuthorImageEl.src = './images/' + author[1];
-	cardAuthorImageEl.alt = author[0];
+	cardAuthorImageEl.src = './images/' + authorImage;
+	cardAuthorImageEl.alt = authorName;
 
 	const cardAuthorNameEl = cardEl.querySelector('.card__author-desc a');
-	cardAuthorNameEl.textContent = author[0];
+	cardAuthorNameEl.textContent = authorName;
 
 	removeLoading();
 	cardWrapperEl.appendChild(cardTemplateNode);
